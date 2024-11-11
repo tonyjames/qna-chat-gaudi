@@ -5,7 +5,7 @@ odf:
     objectStoreName: ocs-storagecluster-cephobjectstore
 
 route:
-  name: s3-rgw
+  name: s3
   service:
     name: rook-ceph-rgw-ocs-storagecluster-cephobjectstore
     weight: 100

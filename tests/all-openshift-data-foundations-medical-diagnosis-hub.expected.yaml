@@ -27,7 +27,7 @@ data:
       oc create secret generic s3-secret-bck -n pattern-namespace \
       --from-literal=AWS_ACCESS_KEY_ID=$(oc extract -n openshift-storage secret/rook-ceph-object-user-ocs-storagecluster-cephobjectstore-ocs-storagecluster-cephobjectstoreuser --keys=AccessKey --to=-) \
       --from-literal=AWS_SECRET_ACCESS_KEY=$(oc extract -n openshift-storage secret/rook-ceph-object-user-ocs-storagecluster-cephobjectstore-ocs-storagecluster-cephobjectstoreuser --keys=SecretKey --to=-) \
-      --from-literal=S3_RGW_ROUTE=$(oc -n openshift-storage get route s3-rgw -ojsonpath='{.spec.host}')
+      --from-literal=S3_RGW_ROUTE=$(oc -n openshift-storage get route s3 -ojsonpath='{.spec.host}')
     fi
 ---
 # Source: odf/templates/rbac/role.yaml
@@ -185,7 +185,7 @@ spec:
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: s3-rgw
+  name: s3
   namespace: openshift-storage
   labels:
     app: rook-ceph-rgw
